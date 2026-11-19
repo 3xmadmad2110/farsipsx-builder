@@ -56,7 +56,14 @@ for (let i = 0; i < count; i++) {
 
 const replaced = [];
 for (const e of entries) {
-  if (e.text === oldPkg) { e.text = newPkg; replaced.push('package'); }
+  if (e.text === oldPkg) {
+    e.text = newPkg; replaced.push('package');
+  } else if (e.text.startsWith(oldPkg + '.')) {
+    // Provider authorities, permissions and action names are compiled as separate
+    // strings; they must move to the new package too or two builds collide on install.
+    e.text = newPkg + e.text.slice(oldPkg.length);
+    replaced.push('suffix:' + e.text.slice(newPkg.length));
+  }
   if (oldLabel && newLabel && e.text === oldLabel) { e.text = newLabel; replaced.push('label'); }
 }
 
