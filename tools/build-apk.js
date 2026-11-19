@@ -123,8 +123,8 @@ export function buildApk({ baseFile, packageName, appName, oldPackage, oldLabel,
   const aligned = path.join(outDir, pkg + '.aligned.apk');
   for (const f of [zip, unsigned, aligned]) fs.rmSync(f, { force: true });
 
-  // AndroidManifest.xml باید بدون فشردهسازی داخل APK باشد → jar -0
-  run(JAR, ['-0cf', zip, '-C', extracted, '.'], ROOT);
+  // فشردهسازی معمولی بهجز مانیفست و .so تا حجم APK زیر حد ۱۰۰ مگابایت بازار بماند.
+  run('node', [path.join(ROOT, 'tools', 'repack-zip.js'), extracted, zip], ROOT);
   fs.copyFileSync(zip, unsigned);
   run(ZIPALIGN, ['-f', '4', unsigned, aligned], ROOT);
 
