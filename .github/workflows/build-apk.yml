@@ -39,16 +39,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Large binary build inputs are hosted as release assets (keeps the repo small).
-      - name: Download base build assets
-        env:
-          GH_TOKEN: ${{ github.token }}
+      # The base APK is stored as ordered chunks (small-request upload limited the uplink).
+      # apktool is a public upstream release, so it is fetched here instead of uploaded.
+      - name: Reconstruct base build assets
         run: |
           mkdir -p base tools
-          gh release download base-assets --repo ${{ github.repository }} --pattern 'base.apk' --dir base --clobber
-          gh release download base-assets --repo ${{ github.repository }} --pattern 'apktool_3.0.3.jar' --dir tools --clobber
+          cat chunks/base.apk.part* > base/base.apk
           test -s base/base.apk
-          test -s tools/apktool_3.0.3.jar
+          echo "base.apk $(wc -c < base/base.apk) bytes"
+          curl -fL --retry 3 -o tools/apktool_3.0.3.jar \
+            https://github.com/iBotPeaches/Apktool/releases/download/v3.0.3/apktool_3.0.3.jar
+          echo "apktool $(wc -c < tools/apktool_3.0.3.jar) bytes"
 
       - uses: actions/setup-node@v4
         with:
