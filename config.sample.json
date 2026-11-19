@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "publishedAt": null,
+  "games": [
+    {
+      "package": "com.farsipsx.bully",
+      "name": "Bully",
+      "console": "PS1",
+      "icon": "https://github.com/USER/REPO/releases/download/assets/bully-icon.png",
+      "cover": "https://github.com/USER/REPO/releases/download/assets/bully-cover.jpg",
+      "marketUrl": "bazaar://details?id=com.farsipsx.bully",
+      "dataVersion": 1,
+      "visible": true,
+      "gameUrl": "https://github.com/USER/REPO/releases/download/com.farsipsx.bully-v1/game.bin",
+      "biosUrl": "",
+      "bios": ""
+    },
+    {
+      "package": "com.farsipsx.sh2",
+      "name": "Silent Hill 2",
+      "console": "PS2",
+      "icon": "https://github.com/USER/REPO/releases/download/assets/sh2-icon.png",
+      "cover": "https://github.com/USER/REPO/releases/download/assets/sh2-cover.jpg",
+      "marketUrl": "bazaar://details?id=com.farsipsx.sh2",
+      "dataVersion": 1,
+      "visible": true,
+      "gameUrl": "https://github.com/USER/REPO/releases/download/com.farsipsx.sh2-v1/game.bin",
+      "biosUrl": "",
+      "bios": ""
+    }
+  ],
+  "servers": [
+    { "id": "gh", "url": "https://github.com/USER/REPO/releases/download/{package}-v{dataVersion}/", "priority": 1, "enabled": true },
+    { "id": "r2", "url": "https://data.newmshop.ir/data/{package}/v{dataVersion}/", "priority": 2, "enabled": false }
+  ],
+  "appearance": {
+    "theme": "ps5",
+    "primary": "#e60012",
+    "background": "#0a0a0c",
+    "showBadge": true
+  },
+  "texts": {
+    "fa": { "store": "فروشگاه", "play": "اجرا", "download": "دریافت دیتا" },
+    "en": { "store": "Store", "play": "Play", "download": "Download data" }
+  },
+  "templates": {
+    "PS1": { "version": null, "key": null, "uploadedAt": null },
+    "PS2": { "version": null, "key": null, "uploadedAt": null }
+  },
+  "messages": {
+    "sideload": "لطفاً بازی را از صفحهٔ آن در کافه بازار بخرید. ممنون از حمایتتان.",
+    "needPurchase": "برای اجرای این بازی ابتدا آن را از بازار خریداری کنید.",
+    "downloadReady": "دیتا آماده است. می‌توانید بازی را اجرا کنید."
+  }
+}
