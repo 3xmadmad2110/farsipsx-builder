@@ -106,7 +106,7 @@ export function buildApk({ baseFile, packageName, appName, oldPackage, oldLabel,
   fs.mkdirSync(extracted, { recursive: true });
   log.push('extract...');
   // JDK's jar understands ZIP on both Windows and Linux; tar does not on Linux.
-  run(JAR, ['-xf', sourceApk], extracted);
+  run(JAR, ['-xf', path.resolve(ROOT, sourceApk)], extracted);
 
   const manifest = path.join(extracted, 'AndroidManifest.xml');
   if (!fs.existsSync(manifest)) throw new Error('AndroidManifest.xml داخل فایل بیس نیست');
