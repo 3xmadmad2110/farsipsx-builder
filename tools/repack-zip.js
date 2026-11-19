@@ -49,7 +49,8 @@ let offset = 0;
 for (const { rel, full } of files) {
   const name = Buffer.from(rel, 'utf8');
   const raw = fs.readFileSync(full);
-  const store = rel === 'AndroidManifest.xml' || /\.so$/i.test(rel);
+  // Android 11+ requires resources.arsc stored uncompressed and 4-byte aligned.
+  const store = rel === 'AndroidManifest.xml' || rel === 'resources.arsc' || /\.so$/i.test(rel);
   const data = store ? raw : zlib.deflateRawSync(raw, { level: 9 });
   const crc = crc32(raw);
 
