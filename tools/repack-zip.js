@@ -22,12 +22,11 @@ function crc32(buf) {
   return (c ^ 0xFFFFFFFF) >>> 0;
 }
 
-function listFiles(dir, prefix = '') {
-  const out = [];
+function listFiles(dir, prefix = '', out = []) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
     const rel = prefix ? prefix + '/' + e.name : e.name;
     const full = path.join(dir, e.name);
-    if (e.isDirectory()) out.push(...listFiles(full, rel));
+    if (e.isDirectory()) listFiles(full, rel, out);
     else if (e.isFile()) out.push({ rel, full });
   }
   return out;
