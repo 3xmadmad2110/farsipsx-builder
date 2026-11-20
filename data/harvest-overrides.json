@@ -1,0 +1,14 @@
+{
+  "com.farsipsx.harvestmoon": {
+    "name": "Harvest Moon",
+    "console": "PS1",
+    "emulator": "PS1",
+    "gameUrl": "https://github.com/3xmadmad2110/farsipsx-builder/releases/download/com.farsipsx.harvestmoon-v1/game.bin",
+    "biosUrl": "https://github.com/3xmadmad2110/farsipsx-builder/releases/download/com.farsipsx.harvestmoon-v1/bios.bin",
+    "icon": "https://raw.githubusercontent.com/3xmadmad2110/farsipsx-builder/main/assets/harvest-icon.png",
+    "cover": "https://raw.githubusercontent.com/3xmadmad2110/farsipsx-builder/main/assets/harvest-cover.jpg",
+    "dataVersion": 1,
+    "visible": true,
+    "marketUrl": "bazaar://details?id=com.farsipsx.harvestmoon"
+  }
+}
