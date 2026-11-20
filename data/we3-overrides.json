@@ -2,6 +2,7 @@
   "com.farsipsx.we3": {
     "name": "Winning Eleven 3",
     "console": "PS1",
+    "emulator": "PS1",
     "gameUrl": "https://github.com/3xmadmad2110/farsipsx-builder/releases/download/com.farsipsx.we3-v1/game.bin",
     "biosUrl": "https://github.com/3xmadmad2110/farsipsx-builder/releases/download/com.farsipsx.we3-v1/bios.bin",
     "icon": "https://raw.githubusercontent.com/3xmadmad2110/farsipsx-builder/main/assets/we3-icon.png",
