@@ -1,0 +1,7 @@
+{
+  "com.farsipsx.bully": {
+    "console": "PS2",
+    "emulator": "PS2",
+    "biosUrl": "https://github.com/3xmadmad2110/farsipsx-builder/releases/download/bios-v1/bios-ps2.bin"
+  }
+}
