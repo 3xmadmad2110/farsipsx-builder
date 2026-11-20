@@ -4,7 +4,7 @@
     "console": "PS1",
     "emulator": "PS1",
     "gameUrl": "https://github.com/3xmadmad2110/farsipsx-builder/releases/download/com.farsipsx.we3-v1/game.bin",
-    "biosUrl": "https://github.com/3xmadmad2110/farsipsx-builder/releases/download/com.farsipsx.we3-v1/bios.bin",
+    "biosUrl": "https://github.com/3xmadmad2110/farsipsx-builder/releases/download/bios-v1/bios-ps1.bin",
     "icon": "https://raw.githubusercontent.com/3xmadmad2110/farsipsx-builder/main/assets/we3-icon.png",
     "cover": "https://raw.githubusercontent.com/3xmadmad2110/farsipsx-builder/main/assets/we3-cover.jpg",
     "dataVersion": 1,
