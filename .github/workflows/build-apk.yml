@@ -29,6 +29,11 @@ on:
         description: 'Optional release tag (default: build-<packageName>)'
         required: false
         type: string
+      baseChunks:
+        description: 'Base APK chunk directory: chunks (PS2) or chunks-ps1 (PS1)'
+        required: false
+        default: 'chunks'
+        type: string
 
 permissions:
   contents: write
@@ -44,7 +49,7 @@ jobs:
       - name: Reconstruct base build assets
         run: |
           mkdir -p base tools
-          cat chunks/base.apk.part* > base/base.apk
+          cat ${{ inputs.baseChunks || 'chunks' }}/base.apk.part* > base/base.apk
           test -s base/base.apk
           echo "base.apk $(wc -c < base/base.apk) bytes"
           curl -fL --retry 3 -o tools/apktool_3.0.3.jar \
