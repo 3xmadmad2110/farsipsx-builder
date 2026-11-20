@@ -18,6 +18,7 @@ const BUILD_TOOLS = process.env.ANDROID_BUILD_TOOLS || path.join(ANDROID_SDK, 'b
 const ZIPALIGN = process.env.ZIPALIGN || path.join(BUILD_TOOLS, ext('zipalign'));
 const APKSIGNER = process.env.APKSIGNER || path.join(BUILD_TOOLS, ext('apksigner'));
 const PATCHER = path.join(ROOT, 'tools', 'patch-manifest.js');
+const ARSC_PATCHER = path.join(ROOT, 'tools', 'patch-arsc.js');
 const SIGNING_PROPS = process.env.SIGNING_PROPS ||
   'C:\\Users\\pc\\AndroidStudioProjects\\bully\\platforms\\android\\armsx2_keystore.properties';
 
@@ -117,6 +118,13 @@ export function buildApk({ baseFile, packageName, appName, oldPackage, oldLabel,
     oldPackage || 'com.farsipsx.base', packageName,
     oldLabel || 'FarsiPSX', appName || packageName
   ], ROOT));
+
+  // application-label در مانیفست به resource_id اشاره میکند؛ متن واقعی در resources.arsc است.
+  const arsc = path.join(extracted, 'resources.arsc');
+  if (fs.existsSync(arsc) && (oldLabel || 'FarsiPSX') !== (appName || packageName)) {
+    log.push('patch resources.arsc...');
+    log.push(run('node', [ARSC_PATCHER, arsc, oldLabel || 'FarsiPSX', appName || packageName], ROOT));
+  }
 
   const zip = path.join(outDir, pkg + '.unsigned.zip');
   const unsigned = path.join(outDir, pkg + '.unsigned.apk');
