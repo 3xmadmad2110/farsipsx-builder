@@ -44,9 +44,10 @@ for (let i = 0; i < count; i++) {
   let at = poolOff + stringsStart + rel;
   let text;
   if (isUtf8) {
-    const [len, a1] = readVarLen(at);
-    const [, a2] = readVarLen(a1);
-    text = buf.toString('utf8', a2, a2 + len);
+    // AXML UTF-8 pool: first varint = UTF-16 length, second = UTF-8 byte length.
+    const [, a1] = readVarLen(at);
+    const [byteLen, a2] = readVarLen(a1);
+    text = buf.toString('utf8', a2, a2 + byteLen);
   } else {
     const len = u16(at);
     text = buf.toString('utf16le', at + 2, at + 2 + len * 2);
@@ -71,10 +72,10 @@ const enc = (s) => {
   if (isUtf8) {
     const b = Buffer.from(s, 'utf8');
     const head = [];
-    if (b.length < 0x80) head.push(b.length);
-    else head.push((b.length >> 8) | 0x80, b.length & 0xff);
     if (s.length < 0x80) head.push(s.length);
     else head.push((s.length >> 8) | 0x80, s.length & 0xff);
+    if (b.length < 0x80) head.push(b.length);
+    else head.push((b.length >> 8) | 0x80, b.length & 0xff);
     return Buffer.concat([Buffer.from(head), b, Buffer.from([0])]);
   }
   const b = Buffer.from(s, 'utf16le');
